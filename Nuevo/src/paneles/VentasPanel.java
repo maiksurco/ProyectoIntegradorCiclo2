@@ -394,7 +394,6 @@ public class VentasPanel extends javax.swing.JPanel {
 
     private void INICIAR_Y_CONTINUARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_INICIAR_Y_CONTINUARActionPerformed
         // TODO add your handling code here:
-        System.out.println("assssssssssasasasasas-------"+ clienteSelected.getNombres());
         if (clienteSelected != null) { //.getId() >0
              System.out.println("pppp-------"+ clienteSelected.getNombres());
             //MsgPanel.success("clienteSelected:" + clienteSelected.getNombres());
@@ -410,13 +409,11 @@ public class VentasPanel extends javax.swing.JPanel {
                 d.setCliente_id(clienteSelected.getId());
                 d.setCliente_nombre(clienteSelected.getNombres());
                 int ventaId = VentaData.create(d);
-System.out.println("assssssssssasasasasas-------------------------------------"+ventaId);
                 if (ventaId > 0) {
                     ventaSelected = VentaData.getByPId(ventaId);
                    // MsgPanel.success("venta id:" + ventaSelected.getId() + " creado para " + ventaSelected.getCliente_nombre()+ " idcli:" + clienteSelected.getId());
 
                     paintTable(new DetalleVentaTablaModelo(ventaSelected));
-System.out.println("as++++++++++++++++++++++++++++++++++++++--");
                 } else {
 
                     ventaSelected = null;
@@ -442,11 +439,10 @@ System.out.println("as++++++++++++++++++++++++++++++++++++++--");
     }//GEN-LAST:event_INICIAR_Y_CONTINUARActionPerformed
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
-      System.out.println("ddddddddddddddddddd" + clienteSelected);
+
         if (evt.getStateChange() == ItemEvent.SELECTED) {
             clienteSelected = (Cliente) jComboBox1.getSelectedItem();
             int id = clienteSelected.getId();
-            System.out.println("ddddddddddddddddddda" + clienteSelected.getId());
             if (id > 0) {
                 List<Venta> ventasDelCliente = VentaData.listActivesByCliente(clienteSelected.getId());
                 if (ventasDelCliente.size() > 0) {
@@ -456,9 +452,9 @@ System.out.println("as++++++++++++++++++++++++++++++++++++++--");
                 } else {
                     ESTADO.setText("");
                     ventaSelected = null;
-          System.out.println("dddddddddddddddddddp" + clienteSelected);
+
                    // MsgPanel.success(" cliente: " + clienteSelected + " sin ventas pendientes, se va crear nueva venta");
-                System.out.println("dddddddddddddddddddx" + clienteSelected);
+
                 }
                 TablaVentas.setEnabled(true);
                 esActualizacion = true;
